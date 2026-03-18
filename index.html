@@ -1,0 +1,904 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Utrecht House — Private Event Space in De Meern</title>
+  <meta name="description" content="A unique private home venue near Utrecht city centre. Perfect for workshops, team offsites, intimate dinners, and creative sessions." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --cream: #f9f5ef;
+      --warm-white: #fdfcfa;
+      --charcoal: #1e1e1e;
+      --warm-gray: #6b6560;
+      --accent: #b5824a;
+      --accent-light: #f0e6d6;
+      --border: #e8e0d5;
+      --section-gap: 100px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--warm-white);
+      color: var(--charcoal);
+      line-height: 1.6;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      padding: 20px 48px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: background 0.3s, box-shadow 0.3s;
+    }
+    nav.scrolled {
+      background: rgba(253, 252, 250, 0.96);
+      backdrop-filter: blur(8px);
+      box-shadow: 0 1px 0 var(--border);
+    }
+    .nav-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.2rem;
+      color: #fff;
+      text-decoration: none;
+      letter-spacing: 0.02em;
+      transition: color 0.3s;
+    }
+    nav.scrolled .nav-logo { color: var(--charcoal); }
+    .nav-links {
+      display: flex;
+      gap: 36px;
+      list-style: none;
+    }
+    .nav-links a {
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: rgba(255,255,255,0.8);
+      text-decoration: none;
+      letter-spacing: 0.04em;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: #fff; }
+    nav.scrolled .nav-links a { color: var(--warm-gray); }
+    nav.scrolled .nav-links a:hover { color: var(--charcoal); }
+    .nav-cta {
+      background: var(--charcoal) !important;
+      color: var(--warm-white) !important;
+      padding: 10px 22px;
+      border-radius: 4px;
+      transition: background 0.2s !important;
+    }
+    .nav-cta:hover { background: #333 !important; }
+
+    /* HERO */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding: 120px 48px 80px;
+      position: relative;
+      overflow: hidden;
+      background: var(--charcoal);
+    }
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background-image: url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1800&q=85&auto=format&fit=crop');
+      background-size: cover;
+      background-position: center;
+      opacity: 0.45;
+    }
+    .hero-content {
+      position: relative;
+      max-width: 680px;
+    }
+    .hero-tag {
+      display: inline-block;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #d4a96a;
+      background: rgba(181,130,74,0.2);
+      border: 1px solid rgba(181,130,74,0.35);
+      padding: 6px 14px;
+      border-radius: 2px;
+      margin-bottom: 28px;
+    }
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.6rem, 5vw, 4rem);
+      line-height: 1.18;
+      color: #fff;
+      margin-bottom: 24px;
+      font-weight: 700;
+    }
+    .hero h1 em {
+      font-style: italic;
+      color: #d4a96a;
+    }
+    .hero p {
+      font-size: 1.125rem;
+      color: rgba(255,255,255,0.75);
+      max-width: 520px;
+      margin-bottom: 40px;
+      font-weight: 300;
+      line-height: 1.75;
+    }
+    .hero-actions {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .btn-primary {
+      background: var(--charcoal);
+      color: var(--warm-white);
+      padding: 15px 32px;
+      border-radius: 4px;
+      font-size: 0.9rem;
+      font-weight: 500;
+      text-decoration: none;
+      letter-spacing: 0.04em;
+      transition: background 0.2s, transform 0.15s;
+      display: inline-block;
+    }
+    .btn-primary:hover { background: #333; transform: translateY(-1px); }
+    .btn-secondary {
+      border: 1.5px solid var(--border);
+      color: var(--charcoal);
+      padding: 15px 32px;
+      border-radius: 4px;
+      font-size: 0.9rem;
+      font-weight: 500;
+      text-decoration: none;
+      letter-spacing: 0.04em;
+      transition: border-color 0.2s, transform 0.15s;
+      display: inline-block;
+    }
+    .btn-secondary:hover { border-color: var(--accent); transform: translateY(-1px); }
+
+    .hero-stats {
+      position: absolute;
+      right: 48px;
+      bottom: 80px;
+      display: flex;
+      gap: 48px;
+    }
+    .stat { text-align: center; }
+    .stat-number {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.2rem;
+      color: #fff;
+      display: block;
+    }
+    .stat-label {
+      font-size: 0.75rem;
+      color: rgba(255,255,255,0.55);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    /* SECTION SHARED */
+    section { padding: var(--section-gap) 48px; }
+    .section-tag {
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 16px;
+      display: block;
+    }
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.8rem, 3vw, 2.6rem);
+      line-height: 1.25;
+      margin-bottom: 16px;
+    }
+    .section-sub {
+      color: var(--warm-gray);
+      font-size: 1.05rem;
+      font-weight: 300;
+      max-width: 540px;
+      line-height: 1.75;
+    }
+
+    /* WHY US */
+    .why {
+      background: var(--warm-white);
+      border-top: 1px solid var(--border);
+    }
+    .why-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: start;
+    }
+    .why-features {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+      margin-top: 8px;
+    }
+    .feature {
+      padding: 28px;
+      background: var(--cream);
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      transition: box-shadow 0.2s, transform 0.2s;
+    }
+    .feature:hover { box-shadow: 0 8px 32px rgba(0,0,0,0.06); transform: translateY(-2px); }
+    .feature-icon {
+      font-size: 1.6rem;
+      margin-bottom: 14px;
+      display: block;
+    }
+    .feature h3 {
+      font-size: 0.95rem;
+      font-weight: 600;
+      margin-bottom: 8px;
+      color: var(--charcoal);
+    }
+    .feature p {
+      font-size: 0.85rem;
+      color: var(--warm-gray);
+      line-height: 1.65;
+    }
+
+    /* SPACES */
+    .spaces { background: var(--cream); border-top: 1px solid var(--border); }
+    .spaces-header {
+      max-width: 1100px;
+      margin: 0 auto 60px;
+    }
+    .spaces-grid {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+    }
+    .space-card {
+      background: var(--warm-white);
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      overflow: hidden;
+      transition: box-shadow 0.3s, transform 0.2s;
+    }
+    .space-card:hover { box-shadow: 0 16px 48px rgba(0,0,0,0.08); transform: translateY(-3px); }
+    .space-img {
+      height: 280px;
+      position: relative;
+      overflow: hidden;
+    }
+    .space-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.5s ease;
+    }
+    .space-card:hover .space-img img {
+      transform: scale(1.04);
+    }
+    .space-badge {
+      position: absolute;
+      top: 16px;
+      left: 16px;
+      background: var(--charcoal);
+      color: var(--warm-white);
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 5px 12px;
+      border-radius: 2px;
+    }
+    .space-body { padding: 32px; }
+    .space-body h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
+      margin-bottom: 12px;
+    }
+    .space-body p {
+      color: var(--warm-gray);
+      font-size: 0.9rem;
+      line-height: 1.7;
+      margin-bottom: 24px;
+    }
+    .space-details {
+      display: flex;
+      gap: 24px;
+      margin-bottom: 24px;
+    }
+    .space-detail {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.82rem;
+      color: var(--warm-gray);
+    }
+    .space-detail span:first-child { font-size: 1rem; }
+    .space-price {
+      display: flex;
+      align-items: baseline;
+      gap: 4px;
+      padding-top: 20px;
+      border-top: 1px solid var(--border);
+    }
+    .price-amount {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.8rem;
+      color: var(--charcoal);
+    }
+    .price-unit {
+      font-size: 0.8rem;
+      color: var(--warm-gray);
+    }
+
+    /* USE CASES */
+    .usecases { background: var(--warm-white); border-top: 1px solid var(--border); }
+    .usecases-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .usecases-header { margin-bottom: 56px; }
+    .usecases-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+    .usecase {
+      padding: 32px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      position: relative;
+      overflow: hidden;
+      transition: box-shadow 0.2s;
+    }
+    .usecase::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: var(--accent);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.3s;
+    }
+    .usecase:hover::before { transform: scaleX(1); }
+    .usecase:hover { box-shadow: 0 8px 32px rgba(0,0,0,0.06); }
+    .usecase-icon { font-size: 2rem; margin-bottom: 16px; display: block; }
+    .usecase h3 { font-size: 1rem; font-weight: 600; margin-bottom: 10px; }
+    .usecase p { font-size: 0.85rem; color: var(--warm-gray); line-height: 1.65; }
+
+    /* LOCATION */
+    .location { background: var(--cream); border-top: 1px solid var(--border); }
+    .location-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+    .location-map {
+      border-radius: 12px;
+      height: 360px;
+      overflow: hidden;
+      position: relative;
+      border: 1px solid var(--border);
+      box-shadow: 0 12px 40px rgba(0,0,0,0.1);
+    }
+    .location-map img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .map-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.55) 0%, transparent 50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-end;
+      padding-bottom: 28px;
+      gap: 8px;
+    }
+    .map-pin { font-size: 2rem; }
+    .map-label {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: #fff;
+      letter-spacing: 0.08em;
+    }
+    .location-perks { list-style: none; margin-top: 28px; }
+    .location-perks li {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      padding: 14px 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 0.9rem;
+      color: var(--warm-gray);
+    }
+    .location-perks li:last-child { border-bottom: none; }
+    .perk-icon { font-size: 1.1rem; flex-shrink: 0; margin-top: 2px; }
+
+    /* BOOKING */
+    .booking {
+      background: var(--charcoal);
+      color: var(--warm-white);
+      border-top: none;
+    }
+    .booking-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: start;
+    }
+    .booking .section-tag { color: #c9975d; }
+    .booking .section-title { color: var(--warm-white); }
+    .booking .section-sub { color: #a09890; }
+    .booking-form {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 12px;
+      padding: 40px;
+    }
+    .form-group {
+      margin-bottom: 20px;
+    }
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+    label {
+      display: block;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #a09890;
+      margin-bottom: 8px;
+    }
+    input, select, textarea {
+      width: 100%;
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 6px;
+      padding: 12px 16px;
+      color: var(--warm-white);
+      font-family: 'Inter', sans-serif;
+      font-size: 0.9rem;
+      transition: border-color 0.2s;
+      outline: none;
+    }
+    input::placeholder, textarea::placeholder { color: #6b6560; }
+    input:focus, select:focus, textarea:focus {
+      border-color: var(--accent);
+    }
+    select option { background: var(--charcoal); }
+    textarea { resize: vertical; min-height: 100px; }
+    .form-submit {
+      width: 100%;
+      background: var(--accent);
+      color: var(--warm-white);
+      border: none;
+      padding: 15px;
+      border-radius: 6px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      cursor: pointer;
+      margin-top: 8px;
+      transition: background 0.2s, transform 0.15s;
+    }
+    .form-submit:hover { background: #a07040; transform: translateY(-1px); }
+
+    /* SUCCESS MESSAGE */
+    .success-msg {
+      display: none;
+      background: rgba(181,130,74,0.15);
+      border: 1px solid var(--accent);
+      border-radius: 6px;
+      padding: 16px 20px;
+      color: #c9975d;
+      font-size: 0.9rem;
+      margin-top: 16px;
+      text-align: center;
+    }
+
+    /* FOOTER */
+    footer {
+      background: #141414;
+      color: #6b6560;
+      padding: 40px 48px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-top: 1px solid rgba(255,255,255,0.06);
+    }
+    .footer-logo {
+      font-family: 'Playfair Display', serif;
+      color: var(--warm-white);
+      font-size: 1.1rem;
+    }
+    .footer-links {
+      display: flex;
+      gap: 28px;
+      list-style: none;
+    }
+    .footer-links a {
+      color: #6b6560;
+      text-decoration: none;
+      font-size: 0.82rem;
+      transition: color 0.2s;
+    }
+    .footer-links a:hover { color: var(--warm-white); }
+    .footer-copy { font-size: 0.8rem; }
+
+    /* SCROLL REVEAL */
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: none;
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 900px) {
+      nav { padding: 16px 24px; }
+      .nav-links { display: none; }
+      section { padding: 64px 24px; }
+      .hero { padding: 100px 24px 64px; }
+      .hero-stats { position: static; margin-top: 48px; justify-content: flex-start; }
+      .why-inner,
+      .spaces-grid,
+      .location-inner,
+      .booking-inner { grid-template-columns: 1fr; gap: 40px; }
+      .why-features { grid-template-columns: 1fr; }
+      .usecases-grid { grid-template-columns: 1fr 1fr; }
+      .form-row { grid-template-columns: 1fr; }
+      footer { flex-direction: column; gap: 20px; text-align: center; }
+      .footer-links { flex-wrap: wrap; justify-content: center; }
+    }
+    @media (max-width: 560px) {
+      .usecases-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav id="nav">
+    <a href="#" class="nav-logo">The Utrecht House</a>
+    <ul class="nav-links">
+      <li><a href="#spaces">Spaces</a></li>
+      <li><a href="#events">Events</a></li>
+      <li><a href="#location">Location</a></li>
+      <li><a href="#book" class="nav-cta">Enquire</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero" id="home">
+    <div class="hero-bg"></div>
+    <div class="hero-content">
+      <span class="hero-tag">Private Venue · De Meern, Utrecht</span>
+      <h1>A real home for<br /><em>extraordinary</em> gatherings.</h1>
+      <p>Escape the conference room. Host your workshop, dinner, creative session, or team offsite in a beautifully designed private house — just minutes from Utrecht city centre.</p>
+      <div class="hero-actions">
+        <a href="#book" class="btn-primary">Check Availability</a>
+        <a href="#spaces" class="btn-secondary">Explore the Spaces</a>
+      </div>
+    </div>
+    <div class="hero-stats">
+      <div class="stat">
+        <span class="stat-number">2</span>
+        <span class="stat-label">Unique Rooms</span>
+      </div>
+      <div class="stat">
+        <span class="stat-number">20</span>
+        <span class="stat-label">Max Guests</span>
+      </div>
+      <div class="stat">
+        <span class="stat-number">10'</span>
+        <span class="stat-label">From Utrecht</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY US -->
+  <section class="why">
+    <div class="why-inner">
+      <div class="reveal">
+        <span class="section-tag">Why The Utrecht House</span>
+        <h2 class="section-title">Not a meeting room.<br />A real home.</h2>
+        <p class="section-sub">Corporate venues are predictable. We offer something rare — a private, characterful space that puts people at ease and sparks genuine connection.</p>
+      </div>
+      <div class="why-features reveal">
+        <div class="feature">
+          <span class="feature-icon">🏠</span>
+          <h3>Residential feel</h3>
+          <p>Warm interiors, natural light, and real furniture — not plastic chairs and fluorescent lights.</p>
+        </div>
+        <div class="feature">
+          <span class="feature-icon">🔒</span>
+          <h3>Fully private</h3>
+          <p>No shared lobbies or strangers walking by. The entire space is exclusively yours.</p>
+        </div>
+        <div class="feature">
+          <span class="feature-icon">📍</span>
+          <h3>Near Utrecht</h3>
+          <p>10 minutes from Utrecht Centraal by car. Easy access from Amsterdam and The Hague.</p>
+        </div>
+        <div class="feature">
+          <span class="feature-icon">✨</span>
+          <h3>Flexible setup</h3>
+          <p>Living room for social gatherings, office for focused work. Mix and match as needed.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SPACES -->
+  <section class="spaces" id="spaces">
+    <div class="spaces-header reveal">
+      <span class="section-tag">The Spaces</span>
+      <h2 class="section-title">Two rooms, endless possibilities.</h2>
+    </div>
+    <div class="spaces-grid">
+      <div class="space-card reveal">
+        <div class="space-img">
+          <div class="space-badge">Most Popular</div>
+          <img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=800&q=85&auto=format&fit=crop" alt="Luxury living room with warm lighting and elegant furniture" />
+        </div>
+        <div class="space-body">
+          <h3>The Living Room</h3>
+          <p>A generous, light-filled living space with comfortable seating, ambient lighting, and a warm atmosphere. Ideal for intimate dinners, creative sessions, and social gatherings where people need to feel at home.</p>
+          <div class="space-details">
+            <div class="space-detail"><span>👥</span><span>Up to 20 guests</span></div>
+            <div class="space-detail"><span>📐</span><span>~55 m²</span></div>
+            <div class="space-detail"><span>☀️</span><span>Natural light</span></div>
+          </div>
+          <div class="space-price">
+            <span class="price-amount">€85</span>
+            <span class="price-unit">/ hour &nbsp;·&nbsp; half-day from €290</span>
+          </div>
+        </div>
+      </div>
+      <div class="space-card reveal">
+        <div class="space-img">
+          <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&q=85&auto=format&fit=crop" alt="Elegant private home office with natural light" />
+        </div>
+        <div class="space-body">
+          <h3>The Office Room</h3>
+          <p>A focused, professional workspace with a large desk, fast Wi-Fi, and a quiet environment. Perfect for small team meetings, client presentations, remote work sprints, and strategy sessions.</p>
+          <div class="space-details">
+            <div class="space-detail"><span>👥</span><span>Up to 8 guests</span></div>
+            <div class="space-detail"><span>🖥️</span><span>Screen & Wi-Fi</span></div>
+            <div class="space-detail"><span>🔇</span><span>Quiet zone</span></div>
+          </div>
+          <div class="space-price">
+            <span class="price-amount">€55</span>
+            <span class="price-unit">/ hour &nbsp;·&nbsp; half-day from €180</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- USE CASES -->
+  <section class="usecases" id="events">
+    <div class="usecases-inner">
+      <div class="usecases-header reveal">
+        <span class="section-tag">What Happens Here</span>
+        <h2 class="section-title">Built for meaningful events.</h2>
+        <p class="section-sub">From creative brainstorms to birthday dinners, the space adapts to your vision.</p>
+      </div>
+      <div class="usecases-grid">
+        <div class="usecase reveal">
+          <span class="usecase-icon">🎯</span>
+          <h3>Team Offsites</h3>
+          <p>Get your team out of the office. A home setting encourages openness and better ideas.</p>
+        </div>
+        <div class="usecase reveal">
+          <span class="usecase-icon">🍽️</span>
+          <h3>Intimate Dinners</h3>
+          <p>Host a client dinner or celebration in a private, relaxed setting — not a restaurant.</p>
+        </div>
+        <div class="usecase reveal">
+          <span class="usecase-icon">💡</span>
+          <h3>Workshops</h3>
+          <p>A creative, comfortable space that keeps participants engaged and energised.</p>
+        </div>
+        <div class="usecase reveal">
+          <span class="usecase-icon">📸</span>
+          <h3>Photo & Film Shoots</h3>
+          <p>Beautiful natural light and interior design — no studio required.</p>
+        </div>
+        <div class="usecase reveal">
+          <span class="usecase-icon">🚀</span>
+          <h3>Product Launches</h3>
+          <p>Create an exclusive, curated atmosphere for your brand moment.</p>
+        </div>
+        <div class="usecase reveal">
+          <span class="usecase-icon">🎉</span>
+          <h3>Private Celebrations</h3>
+          <p>Birthdays, anniversaries, farewell gatherings — without the noise of a bar or restaurant.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LOCATION -->
+  <section class="location" id="location">
+    <div class="location-inner">
+      <div class="reveal">
+        <span class="section-tag">Location</span>
+        <h2 class="section-title">De Meern, Utrecht.</h2>
+        <p class="section-sub">Tucked in the quiet suburb of De Meern, with easy access from the highway and Utrecht's city centre.</p>
+        <ul class="location-perks">
+          <li><span class="perk-icon">🚗</span><span>10 min drive from Utrecht Centraal</span></li>
+          <li><span class="perk-icon">🛣️</span><span>Direct A12 motorway access from Amsterdam &amp; The Hague</span></li>
+          <li><span class="perk-icon">🅿️</span><span>Free private parking on premises</span></li>
+          <li><span class="perk-icon">🚲</span><span>Cycle-friendly — bike route from Utrecht Centraal</span></li>
+          <li><span class="perk-icon">🏡</span><span>Quiet, residential neighbourhood — no distractions</span></li>
+        </ul>
+      </div>
+      <div class="location-map reveal">
+        <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=900&q=85&auto=format&fit=crop" alt="Utrecht canals and historic city view" />
+        <div class="map-overlay">
+          <span class="map-pin">📍</span>
+          <span class="map-label">De Meern · Utrecht</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BOOKING -->
+  <section class="booking" id="book">
+    <div class="booking-inner">
+      <div class="reveal">
+        <span class="section-tag">Book a Visit</span>
+        <h2 class="section-title" style="color: #fdfcfa;">Ready to make<br />it happen?</h2>
+        <p class="section-sub">Tell us about your event and we'll get back to you within one business day to confirm availability and details.</p>
+        <div style="margin-top: 40px; display: flex; flex-direction: column; gap: 20px;">
+          <div style="display: flex; align-items: center; gap: 14px;">
+            <span style="font-size: 1.4rem;">📧</span>
+            <div>
+              <div style="font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.1em; color: #a09890; margin-bottom: 2px;">Email</div>
+              <div style="font-size: 0.95rem; color: #fdfcfa;">hello@theutrechthouse.nl</div>
+            </div>
+          </div>
+          <div style="display: flex; align-items: center; gap: 14px;">
+            <span style="font-size: 1.4rem;">📞</span>
+            <div>
+              <div style="font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.1em; color: #a09890; margin-bottom: 2px;">Phone / WhatsApp</div>
+              <div style="font-size: 0.95rem; color: #fdfcfa;">+31 6 — — — — — —</div>
+            </div>
+          </div>
+          <div style="display: flex; align-items: center; gap: 14px;">
+            <span style="font-size: 1.4rem;">🕐</span>
+            <div>
+              <div style="font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.1em; color: #a09890; margin-bottom: 2px;">Availability</div>
+              <div style="font-size: 0.95rem; color: #fdfcfa;">Mon – Sun, 8:00 – 23:00</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="reveal">
+        <form class="booking-form" id="enquiry-form">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="fname">First name</label>
+              <input type="text" id="fname" placeholder="Anna" required />
+            </div>
+            <div class="form-group">
+              <label for="lname">Last name</label>
+              <input type="text" id="lname" placeholder="Schmidt" required />
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="email">Email address</label>
+            <input type="email" id="email" placeholder="anna@company.com" required />
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="space">Space</label>
+              <select id="space">
+                <option value="">Select a space</option>
+                <option>The Living Room</option>
+                <option>The Office Room</option>
+                <option>Both Spaces</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="guests">Number of guests</label>
+              <input type="number" id="guests" placeholder="8" min="1" max="20" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="date">Preferred date</label>
+            <input type="date" id="date" />
+          </div>
+          <div class="form-group">
+            <label for="message">Tell us about your event</label>
+            <textarea id="message" placeholder="A brief description of what you're planning — helps us prepare the space for you."></textarea>
+          </div>
+          <button type="submit" class="form-submit">Send Enquiry →</button>
+          <div class="success-msg" id="success-msg">
+            ✓ &nbsp;Thank you! We'll be in touch within one business day.
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <span class="footer-logo">The Utrecht House</span>
+    <ul class="footer-links">
+      <li><a href="#spaces">Spaces</a></li>
+      <li><a href="#events">Events</a></li>
+      <li><a href="#location">Location</a></li>
+      <li><a href="#book">Book</a></li>
+    </ul>
+    <span class="footer-copy">© 2026 The Utrecht House · De Meern, Utrecht</span>
+  </footer>
+
+  <script>
+    // Sticky nav
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 40);
+    });
+
+    // Scroll reveal
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry, i) => {
+        if (entry.isIntersecting) {
+          setTimeout(() => entry.target.classList.add('visible'), i * 80);
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    reveals.forEach(el => observer.observe(el));
+
+    // Form submit
+    document.getElementById('enquiry-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const btn = this.querySelector('.form-submit');
+      btn.textContent = 'Sending…';
+      btn.disabled = true;
+      setTimeout(() => {
+        document.getElementById('success-msg').style.display = 'block';
+        btn.textContent = 'Sent!';
+      }, 900);
+    });
+  </script>
+</body>
+</html>
