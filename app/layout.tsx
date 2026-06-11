@@ -1,7 +1,5 @@
-import { Analytics } from '@vercel/analytics/next'
 import type { Metadata } from 'next'
 import { Geist, Geist_Mono, Cormorant_Garamond } from 'next/font/google'
-import { headers } from 'next/headers'
 import './globals.css'
 
 const geistSans = Geist({ variable: '--font-geist-sans', subsets: ['latin'] })
@@ -140,13 +138,10 @@ const jsonLd = [
   },
 ]
 
-export default async function RootLayout({ children }: { children: React.ReactNode }) {
-  const headersList = await headers()
-  const locale = headersList.get('x-locale') ?? 'nl'
-
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html
-      lang={locale}
+      lang="nl"
       className={`${geistSans.variable} ${geistMono.variable} ${cormorant.variable} bg-background`}
     >
       <head>
@@ -157,7 +152,6 @@ export default async function RootLayout({ children }: { children: React.ReactNo
       </head>
       <body className="font-sans antialiased">
         {children}
-        {process.env.VERCEL_ENV && <Analytics />}
       </body>
     </html>
   )
