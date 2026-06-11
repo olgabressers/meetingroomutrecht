@@ -10,10 +10,6 @@ export function Pricing({ locale }: { locale: Locale }) {
       <div className="mx-auto max-w-7xl px-6 lg:px-10">
         <Reveal className="max-w-2xl">
           <p className="mb-5 text-xs uppercase tracking-[0.4em] text-muted-foreground">{t.eyebrow}</p>
-          <h2 className="text-balance font-serif text-4xl font-light leading-tight text-foreground lg:text-5xl">
-            {t.h2}
-          </h2>
-          <p className="mt-4 text-sm text-muted-foreground">{t.note}</p>
         </Reveal>
 
         <Reveal delay={120} className="mt-14">
@@ -22,7 +18,10 @@ export function Pricing({ locale }: { locale: Locale }) {
 
               <div>
                 <p className="text-xs uppercase tracking-[0.35em] text-muted-foreground">{t.mainLabel}</p>
-                <p className="mt-4 font-serif text-6xl font-light text-foreground">€460</p>
+                <div className="mt-4 flex items-baseline gap-2">
+                  <p className="font-serif text-6xl font-light text-foreground">€460</p>
+                  <p className="text-sm text-muted-foreground">{t.excl}</p>
+                </div>
                 <p className="mt-2 text-sm text-muted-foreground">{t.mainPer}</p>
                 <ul className="mt-8 space-y-3 text-sm text-foreground/80">
                   {t.includes.map((item) => (
@@ -38,6 +37,7 @@ export function Pricing({ locale }: { locale: Locale }) {
                 <p className="text-xs uppercase tracking-[0.35em] text-muted-foreground">{t.addonLabel}</p>
                 <div className="mt-6 flex items-baseline gap-2">
                   <p className="font-serif text-4xl font-light text-foreground">€19</p>
+                  <p className="text-sm text-muted-foreground">{t.excl}</p>
                   <p className="text-sm text-muted-foreground">{t.addonPer}</p>
                 </div>
                 <p className="mt-3 font-medium text-foreground">{t.addonName}</p>

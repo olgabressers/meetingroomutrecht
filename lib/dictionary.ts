@@ -58,8 +58,7 @@ export const dict = {
     },
     pricing: {
       eyebrow: 'Tarieven',
-      h2: 'Transparante prijzen, zonder verrassingen',
-      note: 'Alle tarieven zijn exclusief BTW.',
+      excl: 'excl. BTW',
       mainLabel: 'Dagdeel — gehele dag',
       mainPer: 'per dag',
       includes: ['Thee, koffie en water inbegrepen', 'Exclusief gebruik van de woonkamer', 'Gebruik van de tuin'],
@@ -153,8 +152,7 @@ export const dict = {
     },
     pricing: {
       eyebrow: 'Pricing',
-      h2: 'Transparent pricing, no surprises',
-      note: 'All prices are exclusive of VAT.',
+      excl: 'excl. VAT',
       mainLabel: 'Full day',
       mainPer: 'per day',
       includes: ['Tea, coffee and water included', 'Exclusive use of the living room', 'Access to the garden'],
