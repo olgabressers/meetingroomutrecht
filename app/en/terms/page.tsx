@@ -46,10 +46,23 @@ export default function TermsPage() {
         inside the building. Pets are not permitted unless expressly agreed otherwise.
       </p>
 
-      <h2>6. Liability</h2>
+      <h2>6. Liability and insurance</h2>
+      <p>
+        The renter is liable for all damage to the venue, its furnishings or the property of
+        Villa 37, caused by the renter, their guests or any third parties invited by the renter.
+        The renter must report any damage immediately and will bear the full cost of repair or
+        replacement.
+      </p>
+      <p>
+        The renter is advised to hold a valid corporate liability insurance policy or event
+        insurance that covers damage to third parties and to the venue. Villa 37 bears no
+        responsibility for the absence of such insurance.
+      </p>
       <p>
         Villa 37 accepts no liability for theft, loss or damage to the property of the renter or
-        their guests. Participation in activities on the premises is at the renter&apos;s own risk.
+        their guests, nor for personal injury sustained by the renter or their guests, unless such
+        damage is the direct result of intent or gross negligence on the part of Villa 37.
+        Participation in activities on the premises is at the renter&apos;s own risk.
       </p>
 
       <h2>7. Force majeure</h2>

@@ -48,11 +48,24 @@ export default function VoorwaardenPage() {
         uitdrukkelijk anders overeengekomen.
       </p>
 
-      <h2>6. Aansprakelijkheid</h2>
+      <h2>6. Aansprakelijkheid en verzekering</h2>
+      <p>
+        De huurder is aansprakelijk voor alle schade aan de locatie, de inventaris of eigendommen
+        van Villa 37, veroorzaakt door de huurder, diens gasten of door derden die door de huurder
+        zijn uitgenodigd. De huurder dient eventuele schade direct te melden en zal de kosten van
+        herstel of vervanging volledig vergoeden.
+      </p>
+      <p>
+        De huurder wordt geadviseerd te beschikken over een geldige
+        bedrijfsaansprakelijkheidsverzekering of evenementenverzekering die schade aan derden en
+        aan de locatie dekt. Villa 37 is niet verantwoordelijk voor het ontbreken van een
+        dergelijke verzekering.
+      </p>
       <p>
         Villa 37 aanvaardt geen aansprakelijkheid voor diefstal, verlies of schade aan eigendommen
-        van de huurder of diens gasten. Deelname aan activiteiten op de locatie geschiedt op eigen
-        risico.
+        van de huurder of diens gasten, noch voor letselschade van de huurder of diens gasten,
+        tenzij deze schade het rechtstreekse gevolg is van opzet of grove schuld van Villa 37.
+        Deelname aan activiteiten op de locatie geschiedt op eigen risico van de huurder.
       </p>
 
       <h2>7. Overmacht</h2>
