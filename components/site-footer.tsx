@@ -1,3 +1,4 @@
+import Link from "next/link"
 import { ContactLink } from "@/components/contact-link"
 import { dict, type Locale } from "@/lib/dictionary"
 
@@ -25,10 +26,22 @@ export function SiteFooter({ locale }: { locale: Locale }) {
         </ContactLink>
       </div>
       <div className="border-t border-border">
-        <p className="mx-auto max-w-7xl px-6 py-6 text-xs text-muted-foreground lg:px-10">
-          © {new Date().getFullYear()} Villa 37.{' '}
-          {locale === 'nl' ? 'Alle rechten voorbehouden.' : 'All rights reserved.'}
-        </p>
+        <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-3 px-6 py-6 text-xs text-muted-foreground lg:px-10">
+          <p>© {new Date().getFullYear()} Villa 37. {locale === 'nl' ? 'Alle rechten voorbehouden.' : 'All rights reserved.'}</p>
+          <nav className="flex gap-5">
+            {locale === 'nl' ? (
+              <>
+                <Link href="/voorwaarden" className="hover:text-foreground transition-colors">Algemene voorwaarden</Link>
+                <Link href="/privacybeleid" className="hover:text-foreground transition-colors">Privacybeleid</Link>
+              </>
+            ) : (
+              <>
+                <Link href="/en/terms" className="hover:text-foreground transition-colors">Terms &amp; conditions</Link>
+                <Link href="/en/privacy" className="hover:text-foreground transition-colors">Privacy policy</Link>
+              </>
+            )}
+          </nav>
+        </div>
       </div>
     </footer>
   )

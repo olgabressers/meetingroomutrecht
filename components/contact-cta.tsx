@@ -141,6 +141,24 @@ export function ContactCta({ locale }: { locale: Locale }) {
                     className="resize-none border-b border-border bg-transparent py-2 text-sm text-foreground outline-none placeholder:text-muted-foreground/60 focus:border-foreground"
                   />
                 </div>
+                <label className="flex items-start gap-3 text-xs text-muted-foreground">
+                  <input type="checkbox" name="consent" required className="mt-0.5 h-4 w-4 shrink-0 accent-primary" />
+                  <span>
+                    {locale === 'nl' ? (
+                      <>Ik ga akkoord met de{' '}
+                        <a href="/voorwaarden" target="_blank" rel="noopener noreferrer" className="underline underline-offset-2 hover:text-foreground">algemene voorwaarden</a>
+                        {' '}en het{' '}
+                        <a href="/privacybeleid" target="_blank" rel="noopener noreferrer" className="underline underline-offset-2 hover:text-foreground">privacybeleid</a>.
+                      </>
+                    ) : (
+                      <>I agree to the{' '}
+                        <a href="/en/terms" target="_blank" rel="noopener noreferrer" className="underline underline-offset-2 hover:text-foreground">terms &amp; conditions</a>
+                        {' '}and{' '}
+                        <a href="/en/privacy" target="_blank" rel="noopener noreferrer" className="underline underline-offset-2 hover:text-foreground">privacy policy</a>.
+                      </>
+                    )}
+                  </span>
+                </label>
                 {error && (
                   <p className="text-sm text-red-500">
                     {locale === 'nl' ? 'Er is iets misgegaan. Probeer het opnieuw.' : 'Something went wrong. Please try again.'}
