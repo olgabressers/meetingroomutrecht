@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import type React from "react"
 import Image from "next/image"
 import Link from "next/link"
@@ -51,6 +51,7 @@ export function SiteHeader({ locale }: { locale: Locale }) {
   const [scrolled, setScrolled] = useState(false)
   const [open, setOpen] = useState(false)
   const [logoBounce, setLogoBounce] = useState(false)
+  const headerRef = useRef<HTMLElement>(null)
 
   const handleLogoClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
     if (window.scrollY < 80) {
@@ -75,8 +76,24 @@ export function SiteHeader({ locale }: { locale: Locale }) {
     return () => window.removeEventListener("scroll", onScroll)
   }, [])
 
+  useEffect(() => {
+    if (!open) return
+    const onOutsideClick = (e: MouseEvent | TouchEvent) => {
+      if (headerRef.current && !headerRef.current.contains(e.target as Node)) {
+        setOpen(false)
+      }
+    }
+    document.addEventListener("mousedown", onOutsideClick)
+    document.addEventListener("touchstart", onOutsideClick)
+    return () => {
+      document.removeEventListener("mousedown", onOutsideClick)
+      document.removeEventListener("touchstart", onOutsideClick)
+    }
+  }, [open])
+
   return (
     <header
+      ref={headerRef}
       className={`fixed inset-x-0 top-0 z-50 transition-colors duration-500 ${
         scrolled ? "bg-background/85 backdrop-blur-md border-b border-border" : "bg-transparent"
       }`}
