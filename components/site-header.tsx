@@ -180,29 +180,34 @@ export function SiteHeader({ locale }: { locale: Locale }) {
       </div>
 
       {/* Mobile menu */}
-      {open && (
-        <nav className="border-t border-border bg-background/95 backdrop-blur-md md:hidden">
-          <div className="flex flex-col px-6 py-4">
-            {navItems.map((item) => (
-              <a
-                key={item.href}
-                href={item.href === "#contact" ? "#contact-card" : item.href}
-                onClick={(e) => { setOpen(false); if (item.href === "#contact") handleContactClick(e) }}
-                className="border-b border-border/60 py-3 text-sm tracking-wide text-foreground/80"
-              >
-                {item.label}
-              </a>
-            ))}
+      <nav
+        aria-hidden={!open}
+        className={`overflow-hidden transition-all duration-300 ease-in-out md:hidden ${
+          open
+            ? 'max-h-96 opacity-100 border-t border-border'
+            : 'max-h-0 opacity-0 pointer-events-none'
+        } bg-background/95 backdrop-blur-md`}
+      >
+        <div className="flex flex-col px-6 py-4">
+          {navItems.map((item) => (
             <a
-              href="#contact-card"
-              onClick={(e) => { setOpen(false); handleContactClick(e) }}
-              className="mt-4 rounded-full bg-primary px-6 py-3 text-center text-sm tracking-wide text-primary-foreground"
+              key={item.href}
+              href={item.href === "#contact" ? "#contact-card" : item.href}
+              onClick={(e) => { setOpen(false); if (item.href === "#contact") handleContactClick(e) }}
+              className="border-b border-border/60 py-3 text-sm tracking-wide text-foreground/80"
             >
-              {t.book}
+              {item.label}
             </a>
-          </div>
-        </nav>
-      )}
+          ))}
+          <a
+            href="#contact-card"
+            onClick={(e) => { setOpen(false); handleContactClick(e) }}
+            className="mt-4 rounded-full bg-primary px-6 py-3 text-center text-sm tracking-wide text-primary-foreground"
+          >
+            {t.book}
+          </a>
+        </div>
+      </nav>
     </header>
   )
 }
