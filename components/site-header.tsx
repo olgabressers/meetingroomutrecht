@@ -71,7 +71,10 @@ export function SiteHeader({ locale }: { locale: Locale }) {
   ]
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 24)
+    const onScroll = () => {
+      setScrolled(window.scrollY > 24)
+      if (window.scrollY < 100) setActiveSection('')
+    }
     onScroll()
     window.addEventListener("scroll", onScroll)
     return () => window.removeEventListener("scroll", onScroll)
