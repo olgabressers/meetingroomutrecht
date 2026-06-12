@@ -51,6 +51,7 @@ export function SiteHeader({ locale }: { locale: Locale }) {
   const [scrolled, setScrolled] = useState(false)
   const [open, setOpen] = useState(false)
   const [logoBounce, setLogoBounce] = useState(false)
+  const [activeSection, setActiveSection] = useState('')
   const headerRef = useRef<HTMLElement>(null)
 
   const handleLogoClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
@@ -74,6 +75,21 @@ export function SiteHeader({ locale }: { locale: Locale }) {
     onScroll()
     window.addEventListener("scroll", onScroll)
     return () => window.removeEventListener("scroll", onScroll)
+  }, [])
+
+  useEffect(() => {
+    const ids = ['locatie', 'gelegenheden', 'galerij', 'tarieven', 'contact']
+    const observers = ids.map((id) => {
+      const el = document.getElementById(id)
+      if (!el) return null
+      const observer = new IntersectionObserver(
+        ([entry]) => { if (entry.isIntersecting) setActiveSection(id) },
+        { rootMargin: '-40% 0px -55% 0px' }
+      )
+      observer.observe(el)
+      return observer
+    })
+    return () => observers.forEach((o) => o?.disconnect())
   }, [])
 
   useEffect(() => {
@@ -141,7 +157,9 @@ export function SiteHeader({ locale }: { locale: Locale }) {
               key={item.href}
               href={item.href === "#contact" ? "#contact-card" : item.href}
               onClick={item.href === "#contact" ? handleContactClick : undefined}
-              className={`relative text-sm tracking-wide transition-colors duration-500 after:absolute after:bottom-0 after:left-0 after:h-px after:w-0 after:transition-all after:duration-300 hover:after:w-full ${scrolled ? "text-foreground/80 hover:text-foreground after:bg-foreground" : "text-white/85 hover:text-white after:bg-white"}`}
+              className={`relative text-sm tracking-wide transition-colors duration-500 after:absolute after:bottom-0 after:left-0 after:h-px after:transition-all after:duration-300 hover:after:w-full ${
+                activeSection === item.href.replace('#', '') ? 'after:w-full' : 'after:w-0'
+              } ${scrolled ? "text-foreground/80 hover:text-foreground after:bg-foreground" : "text-white/85 hover:text-white after:bg-white"}`}
             >
               {item.label}
             </a>
