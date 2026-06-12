@@ -141,7 +141,7 @@ export function SiteHeader({ locale }: { locale: Locale }) {
               key={item.href}
               href={item.href === "#contact" ? "#contact-card" : item.href}
               onClick={item.href === "#contact" ? handleContactClick : undefined}
-              className={`text-sm tracking-wide transition-colors duration-500 ${scrolled ? "text-foreground/80 hover:text-foreground" : "text-white/85 hover:text-white"}`}
+              className={`relative text-sm tracking-wide transition-colors duration-500 after:absolute after:bottom-0 after:left-0 after:h-px after:w-0 after:transition-all after:duration-300 hover:after:w-full ${scrolled ? "text-foreground/80 hover:text-foreground after:bg-foreground" : "text-white/85 hover:text-white after:bg-white"}`}
             >
               {item.label}
             </a>
