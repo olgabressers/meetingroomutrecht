@@ -118,10 +118,11 @@ const jsonLd = [
   },
   {
     '@context': 'https://schema.org',
-    '@type': 'Product',
+    '@type': 'Service',
     name: 'Vergaderlocatie huren — gehele dag',
     description: 'Exclusief gebruik van de woonkamer van Villa 37 voor de gehele dag, inclusief thee, koffie en water.',
-    brand: { '@type': 'Brand', name: 'Villa 37' },
+    provider: { '@type': 'LocalBusiness', name: 'Villa 37', url: siteUrl },
+    areaServed: { '@type': 'City', name: 'Utrecht' },
     offers: {
       '@type': 'Offer',
       url: siteUrl,
@@ -129,11 +130,6 @@ const jsonLd = [
       price: '460',
       priceValidUntil: '2026-12-31',
       availability: 'https://schema.org/InStock',
-      itemOffered: {
-        '@type': 'Service',
-        name: 'Dagverhuur vergaderlocatie Utrecht',
-        areaServed: 'Utrecht',
-      },
     },
   },
 ]
